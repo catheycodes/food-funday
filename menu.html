@@ -611,9 +611,19 @@ MENU.forEach(([cat, items], i) => {
 
 
 function toggleCat(id) {
-  document.getElementById(id).classList.toggle('open');
-}
+  const clickedCat = document.getElementById(id);
+  const isAlreadyOpen = clickedCat.classList.contains('open');
 
+  // Close all categories
+  document.querySelectorAll('.cat').forEach(cat => {
+    cat.classList.remove('open');
+  });
+
+  // If clicked category was closed, open it
+  if (!isAlreadyOpen) {
+    clickedCat.classList.add('open');
+  }
+}
 
 function toggleDish(id) {
   document.getElementById(id).classList.toggle('open');
@@ -628,7 +638,11 @@ quicknav.addEventListener('click', e => {
 
   const cat = document.getElementById(chip.dataset.target);
 
-  cat.classList.add('open');
+  document.querySelectorAll('.cat').forEach(c => {
+  c.classList.remove('open');
+});
+
+cat.classList.add('open');
 
   document
     .querySelectorAll('.chip')
