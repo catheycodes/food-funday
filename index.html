@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Greenleaf Multicuisine Restaurant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --forest: #0f2318;
+            --forest2: #173325;
+            --moss: #4c7a5b;
+            --moss-dim: #2e4e39;
+            --gold: #d6a34d;
+            --cream: #f5f1e6;
+            --ink: #16241b;
+            --line: rgba(245, 241, 230, .18);
+            --serif: 'Fraunces', serif;
+            --sans: 'Work Sans', sans-serif;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+        }
+
+        body {
+            font-family: var(--sans);
+            color: var(--ink);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+            display: block;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--serif);
+            font-weight: 600;
+            letter-spacing: .2px;
+        }
+
+        /* nav */
+        header {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 50;
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            font-family: var(--serif);
+            font-size: 30px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        nav.links {
+            display: flex;
+            gap: 26px;
+            font-size: 14px;
+        }
+
+        nav.links a {
+            opacity: .85;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: opacity .2s, border-color .2s;
+        }
+
+        nav.links a:hover {
+            opacity: 1;
+            border-color: var(--gold);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        @media(max-width:800px) {
+            nav.links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                height: 100dvh;
+                width: min(78vw, 320px);
+                background: var(--forest2);
+                flex-direction: column;
+                padding: 90px 32px;
+                gap: 22px;
+                transition: right .35s ease;
+            }
+
+            nav.links.open {
+                right: 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        /* hero */
+        .hero {
+            position: relative;
+            background: var(--forest);
+            color: var(--cream);
+            padding: 90px 0 110px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 85% 20%, rgba(76, 122, 91, .35), transparent 55%);
+        }
+
+        .hero .wrap {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .eyebrow-line {
+            width: 44px;
+            height: 2px;
+            background: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 64px);
+            line-height: 1.04;
+            max-width: 11ch;
+        }
+
+        .hero .accent {
+            color: var(--gold);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero p.lede {
+            margin-top: 20px;
+            max-width: 46ch;
+            color: var(--line);
+            color: rgba(245, 241, 230, .8);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 13px 30px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: .3px;
+            transition: background .2s, color .2s;
+        }
+
+        .hero .cta:hover {
+            background: var(--gold);
+            color: var(--forest);
+        }
+
+        .hero-art {
+            justify-self: center;
+        }
+
+        @media(max-width:800px) {
+            .hero .wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-art {
+                display: none;
+            }
+        }
+
+        /* hero entrance — one orchestrated reveal */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .eyebrow-line,
+        .hero h1,
+        .hero p.lede,
+        .hero .cta {
+            opacity: 0;
+            animation: fadeUp .8s cubic-bezier(.3, .6, .3, 1) forwards;
+        }
+
+        .hero .eyebrow-line {
+            animation-delay: .1s;
+        }
+
+        .hero h1 {
+            animation-delay: .25s;
+        }
+
+        .hero p.lede {
+            animation-delay: .45s;
+        }
+
+        .hero .cta {
+            animation-delay: .65s;
+        }
+
+        /* leaf — hand-drawn stroke reveal, then a slow breathing sway */
+        .leaf-svg {
+            overflow: visible;
+        }
+
+        .leaf-sway path {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            animation: draw 1s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+
+        .leaf-sway path:nth-of-type(1) {
+            animation-delay: .1s;
+        }
+
+        .leaf-sway path:nth-of-type(2) {
+            animation-delay: .5s;
+        }
+
+        .leaf-sway path:nth-of-type(3) {
+            animation-delay: .65s;
+        }
+
+        .leaf-sway path:nth-of-type(4) {
+            animation-delay: .72s;
+        }
+
+        .leaf-sway path:nth-of-type(5) {
+            animation-delay: .79s;
+        }
+
+        .leaf-sway path:nth-of-type(6) {
+            animation-delay: .86s;
+        }
+
+        .leaf-sway path:nth-of-type(7) {
+            animation-delay: .93s;
+        }
+
+        .leaf-sway path:nth-of-type(8) {
+            animation-delay: 1s;
+        }
+
+        .leaf-sway path:nth-of-type(9) {
+            animation-delay: 1.07s;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .leaf-tip {
+            opacity: 0;
+            animation: tipFade .4s ease forwards;
+            animation-delay: 1.3s;
+        }
+
+        @keyframes tipFade {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .leaf-sway {
+            transform-box: fill-box;
+            transform-origin: 50% 100%;
+            animation: sway 7s ease-in-out infinite;
+            animation-delay: 1.6s;
+        }
+
+        @keyframes sway {
+
+            0%,
+            100% {
+                transform: rotate(-1.4deg);
+            }
+
+            50% {
+                transform: rotate(1.4deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero .eyebrow-line,
+            .hero h1,
+            .hero p.lede,
+            .hero .cta,
+            .leaf-sway path,
+            .leaf-tip,
+            .leaf-sway {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                stroke-dashoffset: 0 !important;
+            }
+        }
+
+        /* section headers */
+        .head {
+            max-width: 52ch;
+            margin-bottom: 52px;
+        }
+
+        .head .kicker {
+            font-size: 14px;
+            color: var(--moss);
+            font-family: var(--serif);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+
+        .head h2 {
+            font-size: clamp(28px, 4vw, 38px);
+        }
+
+        .head p {
+            margin-top: 14px;
+            color: #4a5a4f;
+            line-height: 1.7;
+            font-size: 15.5px;
+        }
+
+        /* about */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about .wrap {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-visual svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .about-copy p {
+            color: #3d4a41;
+            line-height: 1.85;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media(max-width:800px) {
+            .about .wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* special */
+        .special {
+            background: var(--forest2);
+            color: var(--cream);
+            padding: 100px 0;
+        }
+
+        .special .head p {
+            color: rgba(245, 241, 230, .72);
+        }
+
+        .special .head .kicker {
+            color: var(--gold);
+        }
+
+        .special-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .special-row {
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            gap: 22px;
+            align-items: center;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .special-row .glyph {
+            width: 44px;
+            height: 44px;
+        }
+
+        .special-row h3 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .special-row p {
+            font-size: 14px;
+            color: rgba(245, 241, 230, .65);
+            max-width: 52ch;
+        }
+
+        .special-row .tag {
+            font-family: var(--serif);
+            font-style: italic;
+            color: var(--gold);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        @media(max-width:640px) {
+            .special-row {
+                grid-template-columns: 44px 1fr;
+            }
+
+            .special-row .tag {
+                grid-column: 2;
+                margin-top: 6px;
+            }
+        }
+
+        /* menu - branching vine layout */
+        .menu {
+            padding: 110px 0;
+        }
+
+        .vine {
+            position: relative;
+        }
+
+        .vine::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--moss-dim);
+            opacity: .35;
+            transform: translateX(-1px);
+        }
+
+        .branch {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 60px;
+            padding: 44px 0;
+        }
+
+        .branch:nth-child(even) .cat-label {
+            order: 2;
+            text-align: left;
+        }
+
+        .branch:nth-child(even) .cat-items {
+            order: 1;
+            text-align: right;
+        }
+
+        .cat-label {
+            align-self: start;
+            padding-top: 4px;
+        }
+
+        .cat-label .num {
+            font-family: var(--serif);
+            font-style: italic;
+            color: var(--moss);
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cat-label h3 {
+            font-size: 24px;
+        }
+
+        .cat-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .dish {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            border-bottom: 1px dashed #c9c2ac;
+            padding-bottom: 12px;
+        }
+
+        .branch:nth-child(even) .dish {
+            flex-direction: row-reverse;
+        }
+
+        .dish h4 {
+            font-size: 16px;
+            font-weight: 500;
+            font-family: var(--sans);
+        }
+
+        .dish span {
+            font-size: 13px;
+            color: #7a7264;
+            font-style: italic;
+            font-family: var(--serif);
+            white-space: nowrap;
+        }
+
+        @media(max-width:800px) {
+            .vine::before {
+                left: 20px;
+            }
+
+            .branch,
+            .branch:nth-child(even) {
+                grid-template-columns: 1fr;
+                padding-left: 46px;
+            }
+
+            .branch:nth-child(even) .cat-label,
+            .branch:nth-child(even) .cat-items {
+                order: initial;
+                text-align: left;
+            }
+
+            .branch:nth-child(even) .dish {
+                flex-direction: row;
+            }
+
+            .cat-label {
+                position: relative;
+            }
+
+            .cat-label::before {
+                content: "";
+                position: absolute;
+                left: -34px;
+                top: 8px;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--gold);
+            }
+        }
+
+        .menu-note {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #6b6355;
+        }
+
+        .menu-note a {
+            color: var(--moss);
+            border-bottom: 1px solid var(--moss);
+        }
+
+        /* collage - mosaic of food art, placed right under the menu */
+        .collage {
+            padding: 60px 0;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 130px;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .tile {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            min-height: 130px;
+        }
+
+        .tile img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tile span {
+            position: relative;
+            z-index: 1;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--cream);
+        }
+
+        /* Tile sizes */
+
+        .tile.a {
+            grid-column: span 3;
+            grid-row: span 2;
+        }
+
+        .tile.b {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        .tile.c {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .tile.d {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .tile.e {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .tile.f {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .tile.g {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        @media(max-width:800px) {
+            .collage-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 130px;
+            }
+
+            .tile.a,
+            .tile.b,
+            .tile.c,
+            .tile.d,
+            .tile.e,
+            .tile.f,
+            .tile.g {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .tile.a,
+            .tile.f {
+                grid-row: span 2;
+            }
+        }
+
+        /* gallery - illustrative strip since no photography available */
+        .gallery {
+            background: var(--forest);
+            padding: 100px 0 110px;
+            color: var(--cream);
+        }
+
+        .gallery .head p {
+            color: rgba(245, 241, 230, .7);
+        }
+
+        .gallery .head .kicker {
+            color: var(--gold);
+        }
+
+        .strip {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+        }
+
+        .pane {
+            flex: 0 0 220px;
+            height: 300px;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        /* Image */
+        .pane img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Text below image */
+        .pane span {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 14px;
+            color: var(--cream);
+            padding: 10px 12px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* footer */
+        footer {
+            background: var(--forest2);
+            color: var(--cream);
+            padding: 80px 0 30px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .foot-grid h3 {
+            font-size: 15px;
+            font-family: var(--sans);
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 16px;
+            letter-spacing: .3px;
+        }
+
+        .foot-grid p,
+        .foot-grid li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(245, 241, 230, .75);
+            list-style: none;
+        }
+
+        .foot-grid .brand {
+            color: var(--cream);
+            margin-bottom: 14px;
+        }
+
+        .bottom-bar {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(245, 241, 230, .5);
+        }
+
+        @media(max-width:800px) {
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 36px;
+            }
+        }
+
+        @media(max-width:480px) {
+            .foot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav">
+            <a class="brand" href="#top">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C7 6 5 11 8 16c1.5 2.4 4 3.5 4 3.5s2.5-1.1 4-3.5c3-5 1-10-4-14z" fill="#d6a34d" />
+                </svg>
+                Greenleaf
+            </a>
+            <button class="menu-btn" aria-label="Toggle menu"
+                onclick="document.querySelector('nav.links').classList.toggle('open')">&#9776;</button>
+            <nav class="links">
+                <a href="#top">Home</a>
+                <a href="#about">About</a>
+                <a href="#special">Today</a>
+                <a href="#menu">Menu</a>
+                <a href="#collage">Collage</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#footer">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="wrap">
+            <div>
+                <div class="eyebrow-line"></div>
+                <h1>Dine slow, <span class="accent">breathe easy</span></h1>
+                <p class="lede">A premium multicuisine table serving 300+ dishes from South India, China and beyond —
+                    inside a green, nature-inspired room built for lingering.</p>
+                <a class="cta" href="menu.html">See the menu</a>
+            </div>
+            <div class="hero-art">
+                <svg class="leaf-svg" viewBox="0 0 240 320" width="240">
+                    <defs>
+                        <linearGradient id="leafFill" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#4c7a5b" stop-opacity=".22" />
+                            <stop offset="1" stop-color="#4c7a5b" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
+                    <g class="leaf-sway">
+                        <path pathLength="1"
+                            d="M120 10C55 55 30 140 55 215c17 53 50 87 65 93 13-6 52-43 68-98 20-72-3-155-68-200z"
+                            fill="url(#leafFill)" stroke="#d6a34d" stroke-width="1.6" />
+                        <path pathLength="1" d="M120 40C118 120 122 200 120 295" stroke="#d6a34d" stroke-width="1.4"
+                            fill="none" />
+                        <path pathLength="1" d="M120 70C95 80 78 95 68 115" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 75C145 85 162 100 172 122" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 115C90 128 70 148 58 172" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 120C150 133 168 152 180 176" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 165C88 180 68 202 58 228" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 168C152 182 170 205 180 230" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 215C92 228 76 248 68 268" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <path pathLength="1" d="M120 218C148 230 164 250 172 270" stroke="#4c7a5b" stroke-width="1.1"
+                            fill="none" />
+                        <circle class="leaf-tip" cx="120" cy="10" r="3" fill="#d6a34d" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="wrap">
+            <div class="about-visual">
+                <svg viewBox="0 0 300 300">
+                    <circle cx="150" cy="150" r="120" fill="#eae4d1" />
+                    <path d="M150 60c-45 30-65 80-40 130 15 30 40 45 40 45s25-15 40-45c25-50 5-100-40-130z"
+                        fill="#4c7a5b" opacity=".85" />
+                    <path d="M150 90v130" stroke="#f5f1e6" stroke-width="2" />
+                </svg>
+            </div>
+            <div class="about-copy">
+                <div class="head" style="margin-bottom:26px;">
+                    <div class="kicker">Our story</div>
+                    <h2>Great food meets nature-inspired calm</h2>
+                </div>
+                <p>Greenleaf Multicuisine Restaurant serves 300+ dishes from around the world — South Indian parathas
+                    and kothu varieties, Chinese, Continental, desserts, and refreshing beverages, all from one kitchen.
+                </p>
+                <p>Step into a green-themed room built to slow you down, whether you've come with family, caught up with
+                    old friends, or you're marking something worth celebrating.</p>
+                <p>Where great food meets a one-of-a-kind nature-inspired experience — that's the Greenleaf promise.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="special" id="special">
+        <div class="wrap">
+            <div class="head">
+                <div class="kicker">Fresh today</div>
+                <h2>On the pass right now</h2>
+                <p>Prepared fresh, in small batches, while ingredients are at their best.</p>
+            </div>
+            <div class="special-list">
+                <div class="special-row">
+                    <svg class="glyph" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="#d6a34d" stroke-width="1.4" />
+                        <path d="M12 22c4-8 12-8 16 0" stroke="#d6a34d" stroke-width="1.4" fill="none" />
+                    </svg>
+                    <div>
+                        <h3>Salmon Steak</h3>
+                        <p>Pan-seared and finished with a light herb glaze, plated fresh to order.</p>
+                    </div>
+                    <span class="tag">Chef's pick</span>
+                </div>
+                <div class="special-row">
+                    <svg class="glyph" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="#d6a34d" stroke-width="1.4" />
+                        <path d="M12 26l16-16M12 14h16v16" stroke="#d6a34d" stroke-width="1.2" fill="none" />
+                    </svg>
+                    <div>
+                        <h3>Italian Pizza</h3>
+                        <p>Thin, hand-stretched base with a slow-simmered tomato base.</p>
+                    </div>
+                    <span class="tag">Today only</span>
+                </div>
+                <div class="special-row">
+                    <svg class="glyph" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="#d6a34d" stroke-width="1.4" />
+                        <path d="M13 20h14M20 13v14" stroke="#d6a34d" stroke-width="1.4" />
+                    </svg>
+                    <div>
+                        <h3>Veg. Roll</h3>
+                        <p>Crisp on the outside, packed with a spiced vegetable filling.</p>
+                    </div>
+                    <span class="tag">Today only</span>
+                </div>
+                <div class="special-row">
+                    <svg class="glyph" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="#d6a34d" stroke-width="1.4" />
+                        <path d="M14 24c2-8 10-8 12 0" stroke="#d6a34d" stroke-width="1.4" fill="none" />
+                    </svg>
+                    <div>
+                        <h3>Butterscotch Ice Cream</h3>
+                        <p>Churned in-house, finished with a caramelised nut brittle.</p>
+                    </div>
+                    <span class="tag">Dessert</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <div class="wrap">
+            <div class="head" style="margin-left:auto;margin-right:auto;text-align:center;">
+                <div class="kicker">A glimpse of 300+ dishes</div>
+                <h2>From our menu</h2>
+            </div>
+            <div class="vine">
+                <div class="branch">
+                    <div class="cat-label"><span class="num">Starters</span>
+                        <h3>Small plates</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Garlic Bread</h4><span>warm, herbed</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Mixed Salad</h4><span>seasonal</span>
+                        </div>
+                        <div class="dish">
+                            <h4>BBQ Chicken Wings</h4><span>smoked, tangy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="cat-label"><span class="num">Mains</span>
+                        <h3>The kitchen's core</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Meat Feast Pizza</h4><span>hand-stretched</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Chicken Tikka Masala</h4><span>slow-simmered</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Spicy Meatballs</h4><span>house sauce</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Spicy Chicken Noodles</h4><span>wok-tossed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="cat-label"><span class="num">Desserts</span>
+                        <h3>To finish</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Fruits Salad</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Fruits Salad with Ice Cream</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Butterscotch Ice Cream</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Pista Ice Cream</h4><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="cat-label"><span class="num">Drinks</span>
+                        <h3>To sip alongside</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Sweet Lime Juice</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Fresh Lemon Soda</h4><span>salt & sweet</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Sweet Lassi</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Mineral Water</h4><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="cat-label"><span class="num">South Indian</span>
+                        <h3>From the tawa</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Kothu Parotta</h4><span>egg or chicken</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Ghee Roast Dosa</h4><span>crisp, thin</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Chettinad Chicken Curry</h4><span>slow-cooked</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Paneer Tikka Masala</h4><span>house special</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="branch">
+                    <div class="cat-label"><span class="num">Chinese & Continental</span>
+                        <h3>Wok and grill</h3>
+                    </div>
+                    <div class="cat-items">
+                        <div class="dish">
+                            <h4>Spicy Thai Noodles</h4><span>wok-tossed</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Chilli Garlic Fried Rice</h4><span></span>
+                        </div>
+                        <div class="dish">
+                            <h4>Triple Truffle Trotters</h4><span>signature</span>
+                        </div>
+                        <div class="dish">
+                            <h4>Grilled Herb Chicken</h4><span>continental</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="menu-note">This is a taste of it — <a href="menu.html">view the full 300+ dish menu</a></p>
+        </div>
+    </section>
+
+    <section class="collage" id="collage">
+        <div class="wrap">
+            <div class="head" style="margin-left:auto;margin-right:auto;text-align:center;">
+                <div class="kicker">All in one frame</div>
+                <h2>A food collage</h2>
+            </div>
+            <div class="collage-grid">
+                <div class="tile a" style="background:#173325;"><img src="images/CTM.jpg"><span>Chicken Tikka
+                        Masala</span></div>
+                <div class="tile b" style="background:#2e4e39;"><img src="images/pizza.jpg"><span>Italian Pizza</span>
+                </div>
+                <div class="tile c" style="background:#0f2318;"><img src="images/Noodles.jpg"><span>Spicy Thai
+                        Noodles</span></div>
+                <div class="tile d" style="background:#1c3a28;"><img
+                        src="images/butterscotch.jpg"></svg><span>Butterscotch Ice Cream</span></div>
+                <div class="tile e" style="background:#2e4e39;"><img src="images/kothuparota.jpg"><span>Kothu
+                        Parotta</span></div>
+                <div class="tile f" style="background:#173325;"><img src="images/bbq.jpg"></svg><span>BBQ Chicken
+                        Wings</span></div>
+                <div class="tile g" style="background:#0f2318;"><img src="images/dosa.jpg"><span>Ghee Roast Dosa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="wrap">
+            <div class="head">
+                <div class="kicker">Straight from the kitchen</div>
+                <h2>A taste, plate by plate</h2>
+            </div>
+            <div class="strip">
+
+                <div class="pane" style="background:#1c3a28;">
+                    <img src="images/CTM.jpg" alt="Chicken Tikka Masala">
+                    <span>Chicken Tikka Masala</span>
+                </div>
+
+                <div class="pane" style="background:#2e4e39;">
+                    <img src="images/pizza.jpg" alt="Italian Pizza">
+                    <span>Italian Pizza</span>
+                </div>
+
+                <div class="pane" style="background:#173325;">
+                    <img src="images/Noodles.jpg" alt="Spicy Thai Noodles">
+                    <span>Spicy Thai Noodles</span>
+                </div>
+
+                <div class="pane" style="background:#1c3a28;">
+                    <img src="images/butterscotch.jpg" alt="Butterscotch Ice Cream">
+                    <span>Butterscotch Ice Cream</span>
+                </div>
+
+                <div class="pane" style="background:#1c3a28;">
+                    <img src="images/bbq.jpg" alt="BBQ Chicken Wings">
+                    <span>BBQ Chicken Wings</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <div class="brand"
+                        style="display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-size:19px;font-weight:700;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                            <path d="M12 2C7 6 5 11 8 16c1.5 2.4 4 3.5 4 3.5s2.5-1.1 4-3.5c3-5 1-10-4-14z"
+                                fill="#d6a34d" />
+                        </svg>
+                        Greenleaf
+                    </div>
+                    <p>A premium multicuisine restaurant serving 300+ dishes in a green, nature-inspired room — for
+                        families, friends, and special occasions.</p>
+                </div>
+                <div>
+                    <h3>New on the menu</h3>
+                    <ul>
+                        <li>Paneer Tikka Masala</li>
+                        <li>Spicy Thai Noodles</li>
+                        <li>Triple Truffle Trotters</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Visit us</h3>
+                    <ul>
+                        <li>6 E Esplanade, St Albans VIC 3021, Australia</li>
+                        <li>+91 80005 89080</li>
+                        <li><a href="mailto:support@foodfunday.com">support@foodfunday.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Hours</h3>
+                    <ul>
+                        <li>Mon–Thu: 11am – 9pm</li>
+                        <li>Fri–Sat: 11am – 5pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-bar">Copyright &copy; 2026 Greenleaf Multicuisine Restaurant. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav.links a').forEach(a => a.addEventListener('click', () => {
+            document.querySelector('nav.links').classList.remove('open');
+        }));
+    </script>
+</body>
+
+</html>

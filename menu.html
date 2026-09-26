@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Full Menu — Greenleaf Multicuisine Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0f2318; --forest2:#173325; --moss:#4c7a5b; --moss-dim:#2e4e39;
+  --gold:#d6a34d; --cream:#f5f1e6; --ink:#16241b; --line:rgba(22,36,27,.14);
+  --serif:'Fraunces',serif; --sans:'Work Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--cream);
+  overflow-x:hidden;
+  max-width:100vw;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+a,button{text-decoration:none;color:inherit;font:inherit;background:none;border:none;cursor:pointer;}
+
+/* Centered container */
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 20px;
+  width:100%;
+}
+/* Menu list: clear space on LEFT and RIGHT so it sits centered */
+.book{
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  padding-top: 24px;
+  padding-bottom: 100px;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER: Greenleaf LEFT corner | Back RIGHT corner ===== */
+header{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:50;
+  background:var(--forest);
+  color:var(--cream);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 28px;
+  max-width:none;          /* full width so brand is true left corner */
+  margin:0;
+  width:100%;
+}
+.brand{
+  font-family:var(--serif);
+  font-size:18px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+.brand svg{width:22px;height:22px;flex:none;}
+.back{
+  font-size:13px;
+  color:var(--gold);
+  border-bottom:1px solid var(--gold);
+  padding-bottom:2px;
+  white-space:nowrap;
+  flex-shrink:0;
+  margin-left:auto;
+  opacity:.95;
+}
+
+/* ===== TITLE BAND + LEAF (more visible, shifted right) ===== */
+.title-band{
+  position:relative;
+  overflow:hidden;
+  background:var(--forest);
+  color:var(--cream);
+  padding:48px 0 36px;
+  text-align:center;
+}
+.title-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 55% 65% at 88% 20%, rgba(76,122,91,.5), transparent 65%),
+    radial-gradient(ellipse 45% 55% at 8% 95%, rgba(214,163,77,.16), transparent 70%);
+}
+/* Leaf: further right + richer design */
+.title-band .leaf-mark{
+  position:absolute;
+  right:2%;
+  top:48%;
+  transform:translateY(-50%) rotate(10deg);
+  width:155px;
+  height:auto;
+  opacity:0.7;
+  pointer-events:none;
+  z-index:0;
+}
+.title-band .wrap{position:relative;z-index:1;}
+.title-band .kicker{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--gold);
+  font-size:13.5px;
+  margin-bottom:8px;
+}
+.title-band h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(28px,7vw,42px);
+  line-height:1.15;
+}
+.title-band p{
+  margin-top:12px;
+  color:rgba(245,241,230,.78);
+  font-size:14.5px;
+  max-width:42ch;
+  margin-inline:auto;
+  line-height:1.5;
+}
+
+/* ===== QUICK NAV CHIPS — start from left edge ===== */
+.quicknav{background:var(--forest2);}
+.quicknav .wrap{
+  display:flex;
+  gap:8px;
+  padding:12px 14px 12px 12px; /* less left padding so chips start near left end */
+  max-width:none;
+  margin:0;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.quicknav .wrap::-webkit-scrollbar{display:none;}
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  flex:none;
+  white-space:nowrap;
+  font-size:12.5px;
+  color:rgba(245,241,230,.85);
+  border:1px solid rgba(245,241,230,.22);
+  padding:6px 12px;
+  border-radius:99px;
+  transition:border-color .2s,color .2s;
+}
+.chip:hover,.chip.active{color:var(--gold);border-color:var(--gold);}
+.chip .n{font-family:var(--serif);font-style:italic;color:var(--moss);}
+.chip.active .n{color:var(--gold);}
+
+/* ===== MENU LIST — left aligned, centered container ===== */
+.cat{
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:110px;
+}
+.cat-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:16px 0;
+  text-align:left;
+}
+.cat-head .idx{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--moss);
+  font-size:14px;
+  flex:none;
+  min-width:1.5em;
+  text-align:left;
+}
+.cat-head h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:17.5px;
+  flex:1 1 auto;
+  text-align:left;
+  color:var(--ink);
+}
+.cat-head .count{
+  font-size:12px;
+  color:#8a8272;
+  flex:none;
+}
+.cat-head .chevron{
+  flex:none;
+  width:16px;
+  height:16px;
+  transition:transform .35s ease;
+  color:#8a8272;
+}
+.cat.open .chevron{transform:rotate(180deg);}
+
+.cat-body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);
+}
+.cat.open .cat-body{grid-template-rows:1fr;}
+.cat-body > div{overflow:hidden;}
+.dish-list{padding-bottom:14px;}
+
+.dish{border-top:1px dashed #d6cfba;}
+.dish:first-child{border-top:none;}
+.dish-name{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  padding:11px 0;
+  font-size:14.5px;
+  text-align:left;
+}
+.dish-name .plus{
+  font-family:var(--serif);
+  color:var(--moss);
+  font-size:16px;
+  transition:transform .3s ease;
+  flex:none;
+  margin-left:12px;
+}
+.dish.open .dish-name .plus{transform:rotate(45deg);}
+.dish-name:hover{color:var(--moss-dim);}
+
+.reveal{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+}
+.dish.open .reveal{grid-template-rows:1fr;}
+.reveal > div{overflow:hidden;}
+.reveal-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:2px 0 14px;
+}
+.reveal-inner svg{
+  width:52px;
+  height:52px;
+  flex:none;
+  background:var(--forest2);
+  border-radius:10px;
+  padding:6px;
+  transform:scale(.7);
+  opacity:0;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1) .05s,opacity .25s ease .05s;
+}
+.dish.open .reveal-inner svg{transform:scale(1);opacity:1;}
+.reveal-inner p{
+  font-size:12.5px;
+  color:#6b6355;
+  line-height:1.55;
+  opacity:0;
+  transform:translateX(-5px);
+  transition:opacity .3s ease .12s,transform .3s ease .12s;
+}
+.dish.open .reveal-inner p{opacity:1;transform:translateX(0);}
+
+footer{
+  background:var(--forest2);
+  color:rgba(245,241,230,.6);
+  text-align:center;
+  padding:26px 16px;
+  font-size:12.5px;
+}
+
+/* ===== MOBILE: chips from left end + menu list with side space ===== */
+@media (max-width: 520px){
+  .wrap{padding:0 16px;}
+  .nav{padding:12px 18px;}
+  .brand{font-size:16.5px;}
+  .brand svg{width:20px;height:20px;}
+  .back{font-size:12px;}
+  .title-band{padding:40px 0 30px;}
+  .title-band .leaf-mark{
+    right:0%;
+    width:120px;
+    opacity:0.72;
+  }
+  .title-band h1{font-size:clamp(26px,8vw,34px);}
+  .title-band p{font-size:13.5px;padding:0 4px;}
+  .quicknav .wrap{
+    padding:10px 12px 10px 10px;   /* chips start near left end */
+    gap:7px;
+  }
+  .chip{font-size:12px;padding:5px 10px;}
+  /* Menu list: strong left + right space on mobile */
+  .book{
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-top: 18px;
+    padding-bottom: 90px;
+  }
+  .cat-head{padding:15px 0;gap:8px;}
+  .cat-head h2{font-size:16.5px;}
+  .cat-head .idx{font-size:13px;}
+  .dish-name{padding:10px 0;font-size:14px;}
+  .reveal-inner{gap:12px;}
+  .reveal-inner svg{width:48px;height:48px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2C7 6 5 11 8 16c1.5 2.4 4 3.5 4 3.5s2.5-1.1 4-3.5c3-5 1-10-4-14z" fill="#d6a34d"/>
+      </svg>
+      Greenleaf
+    </a>
+    <a class="back" href="index.html">&larr; Back to main site</a>
+  </div>
+</header>
+
+<div class="title-band" id="top">
+  <!-- Decorative leaf — further right, richer design -->
+  <svg class="leaf-mark" viewBox="0 0 120 160" fill="none" aria-hidden="true">
+    <!-- Outer leaf shape -->
+    <path d="M60 4C28 26 12 68 26 108c8 24 28 42 34 48 6-6 26-24 34-48 14-40-2-82-34-104z"
+          stroke="#d6a34d" stroke-width="2.4" fill="rgba(214,163,77,0.14)"/>
+    <!-- Center vein -->
+    <path d="M60 16v128" stroke="#d6a34d" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Left veins -->
+    <path d="M60 40c-10 6-18 14-22 24M60 62c-12 8-20 16-24 26M60 88c-10 8-18 14-22 22"
+          stroke="#d6a34d" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <!-- Right veins -->
+    <path d="M60 40c10 6 18 14 22 24M60 62c12 8 20 16 24 26M60 88c10 8 18 14 22 22"
+          stroke="#d6a34d" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <!-- Soft inner glow -->
+    <path d="M60 20C36 40 26 72 34 102c5 18 18 30 26 36 8-6 21-18 26-36 8-30-2-62-26-82z"
+          fill="rgba(214,163,77,0.08)" stroke="none"/>
+  </svg>
+  <div class="wrap">
+    <div class="kicker">Every dish, one page</div>
+    <h1>The Full Menu</h1>
+    <p>300+ dishes across the kitchen. Tap a category to open it, then tap any dish to see it.</p>
+  </div>
+</div>
+
+<nav class="quicknav"><div class="wrap" id="quicknav"></div></nav>
+
+<div class="wrap book" id="book"></div>
+
+<footer>Copyright &copy; 2026 Greenleaf Multicuisine Restaurant. All rights reserved.</footer>
+
+<script>
+const MENU = [
+["Soups","soup",["Sweet Corn Soup","Hot & Sour Soup","Tomato Basil Soup","Chicken Clear Soup","Mushroom Soup","Lemon Coriander Soup"]],
+["Starters – Veg","grill",["Paneer 65","Gobi Manchurian","Veg Spring Rolls","Crispy Corn","Mushroom Chilli","Baby Corn Fritters","Paneer Tikka"]],
+["Starters – Non-Veg","grill",["Chicken 65","BBQ Chicken Wings","Fish Fingers","Prawn Koliwada","Mutton Seekh Kebab","Chilli Chicken (Dry)"]],
+["Salads","salad",["Mixed Green Salad","Kachumber Salad","Caesar Salad","Sprouts & Pomegranate","Curd Salad"]],
+["South Indian Tiffin","bread",["Idli Sambar","Medu Vada","Rava Kesari","Pongal","Uttapam","Rava Dosa"]],
+["Dosa Varieties","bread",["Ghee Roast Dosa","Masala Dosa","Onion Rava Dosa","Mysore Masala Dosa","Podi Dosa","Cheese Dosa"]],
+["Kothu Varieties","noodle",["Kothu Parotta – Egg","Kothu Parotta – Chicken","Veg Kothu Parotta","Schezwan Kothu","Cheese Kothu Parotta"]],
+["Biryani","rice",["Chicken Biryani","Mutton Biryani","Veg Biryani","Prawn Biryani","Egg Biryani","Paneer Biryani"]],
+["Tandoor & Grill","grill",["Tandoori Chicken","Malai Tikka","Seekh Kebab","Grilled Herb Chicken","Tandoori Prawns","Paneer Shashlik"]],
+["North Indian Curries","curry",["Chicken Tikka Masala","Butter Chicken","Chettinad Chicken Curry","Paneer Tikka Masala","Dal Makhani","Kadai Paneer","Palak Paneer"]],
+["Chinese – Starters","grill",["Veg Manchurian","Chicken Lollipop","Honey Chilli Potato","Crispy Chilli Fish","Golden Fried Prawns"]],
+["Chinese – Mains","noodle",["Spicy Thai Noodles","Chilli Garlic Fried Rice","Schezwan Fried Rice","Triple Truffle Trotters","Hakka Noodles","Manchow Rice"]],
+["Continental","curry",["Grilled Herb Chicken","Fish & Chips","Roast Vegetable Platter","Herb Butter Steak","Mac & Cheese"]],
+["Pizza & Pasta","pizza",["Meat Feast Pizza","Italian Pizza","Margherita Pizza","Alfredo Pasta","Arrabbiata Pasta"]],
+["Rice & Breads","bread",["Steamed Rice","Jeera Rice","Butter Naan","Garlic Naan","Laccha Paratha","Roti"]],
+["Desserts","dessert",["Butterscotch Ice Cream","Pista Ice Cream","Fruits Salad","Fruits Salad with Ice Cream","Gulab Jamun","Gajar Halwa"]],
+["Beverages & Mocktails","drink",["Sweet Lime Juice","Fresh Lemon Soda","Sweet Lassi","Mineral Water","Virgin Mojito","Blue Lagoon"]]
+];
+
+const ICONS = {
+  soup:  `<circle cx="32" cy="34" r="18" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M16 34a16 16 0 0 0 32 0" fill="none" stroke="#f5f1e6" stroke-width="1.4"/><path d="M24 14c1 4-2 5-1 9M32 12c1 4-2 5-1 9M40 14c1 4-2 5-1 9" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
+  curry: `<circle cx="32" cy="36" r="17" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M18 30c4-7 24-7 28 0M18 40c4 6 24 6 28 0" stroke="#f5f1e6" stroke-width="1.2" fill="none"/>`,
+  rice:  `<ellipse cx="32" cy="40" rx="20" ry="10" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M24 34c4-14 12-14 16 0" stroke="#f5f1e6" stroke-width="1.3" fill="none"/><circle cx="26" cy="30" r="1.4" fill="#4c7a5b"/><circle cx="34" cy="26" r="1.4" fill="#4c7a5b"/><circle cx="40" cy="32" r="1.4" fill="#4c7a5b"/>`,
+  noodle:`<path d="M12 24c8 10 14-6 20 4s12-6 20 4" stroke="#d6a34d" stroke-width="1.5" fill="none"/><path d="M12 34c8 10 14-6 20 4s12-6 20 4" stroke="#f5f1e6" stroke-width="1.3" fill="none"/><path d="M12 44c8 10 14-6 20 4s12-6 20 4" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
+  grill: `<circle cx="32" cy="38" r="16" fill="none" stroke="#f5f1e6" stroke-width="1.4" opacity=".5"/><path d="M20 38a12 12 0 0 1 24 0" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M32 12v10M27 15l3 8M37 15l-3 8" stroke="#4c7a5b" stroke-width="1.3"/>`,
+  bread: `<path d="M14 40c2-18 12-24 18-24s16 6 18 24c-6 5-30 5-36 0z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M18 38h28" stroke="#f5f1e6" stroke-width="1.2"/>`,
+  dessert:`<path d="M20 44c0-14 6-24 12-24s12 10 12 24" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M14 44h36" stroke="#f5f1e6" stroke-width="1.4"/><path d="M32 20v-8M24 24l-6-6M40 24l6-6" stroke="#4c7a5b" stroke-width="1.3"/>`,
+  drink: `<path d="M22 14h20l-4 30h-12z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M23 22h18" stroke="#f5f1e6" stroke-width="1.2"/><path d="M32 44v8M26 52h12" stroke="#4c7a5b" stroke-width="1.3"/>`,
+  salad: `<path d="M14 38a18 6 0 0 0 36 0z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M20 36c2-8 6-12 8-14M32 34c1-9 3-13 5-16M40 36c2-7 5-11 6-13" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
+  pizza: `<path d="M32 12l20 40H12z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><circle cx="30" cy="34" r="2" fill="#4c7a5b"/><circle cx="24" cy="42" r="2" fill="#4c7a5b"/><circle cx="36" cy="42" r="2" fill="#4c7a5b"/>`
+};
+
+const quicknav = document.getElementById('quicknav');
+const book = document.getElementById('book');
+
+MENU.forEach(([cat, icon, items], i)=>{
+  const num = String(i+1).padStart(2,'0');
+  const cid = 'cat'+i;
+
+  quicknav.innerHTML += `<button class="chip" data-target="${cid}"><span class="n">${num}</span>${cat}</button>`;
+
+  const dishes = items.map((d,j)=>`
+    <div class="dish" id="${cid}-d${j}">
+      <button class="dish-name" onclick="toggleDish('${cid}-d${j}')">${d}<span class="plus">+</span></button>
+      <div class="reveal"><div><div class="reveal-inner">
+        <svg viewBox="0 0 64 64">${ICONS[icon]}</svg>
+        <p>From our ${cat.toLowerCase()} selection — ask your server about today's preparation.</p>
+      </div></div></div>
+    </div>`).join('');
+
+  book.innerHTML += `
+    <section class="cat" id="${cid}">
+      <button class="cat-head" onclick="toggleCat('${cid}')">
+        <span class="idx">${num}</span><h2>${cat}</h2><span class="count">${items.length} dishes</span>
+        <svg class="chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+      </button>
+      <div class="cat-body"><div><div class="dish-list">${dishes}</div></div></div>
+    </section>`;
+});
+
+function toggleCat(id){
+  document.getElementById(id).classList.toggle('open');
+}
+function toggleDish(id){
+  document.getElementById(id).classList.toggle('open');
+}
+
+quicknav.addEventListener('click', e=>{
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  const cat = document.getElementById(chip.dataset.target);
+  cat.classList.add('open');
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  cat.scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
