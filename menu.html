@@ -28,7 +28,7 @@ a,button{text-decoration:none;color:inherit;font:inherit;background:none;border:
 
 /* Centered container */
 .wrap{
-  max-width:720px;
+  max-width:960px;
   margin:0 auto;
   padding:0 20px;
   width:100%;
@@ -39,7 +39,7 @@ a,button{text-decoration:none;color:inherit;font:inherit;background:none;border:
   padding-right: 28px !important;
   padding-top: 24px;
   padding-bottom: 100px;
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
@@ -254,18 +254,18 @@ header{
   gap:14px;
   padding:2px 0 14px;
 }
-.reveal-inner svg{
-  width:52px;
-  height:52px;
+.reveal-inner img{
+  width:302px;
+  height:302px;
   flex:none;
+  object-fit:cover;
   background:var(--forest2);
   border-radius:10px;
-  padding:6px;
   transform:scale(.7);
   opacity:0;
   transition:transform .35s cubic-bezier(.34,1.56,.64,1) .05s,opacity .25s ease .05s;
 }
-.dish.open .reveal-inner svg{transform:scale(1);opacity:1;}
+.dish.open .reveal-inner img{transform:scale(1);opacity:1;}
 .reveal-inner p{
   font-size:12.5px;
   color:#6b6355;
@@ -316,7 +316,7 @@ footer{
   .cat-head .idx{font-size:13px;}
   .dish-name{padding:10px 0;font-size:14px;}
   .reveal-inner{gap:12px;}
-  .reveal-inner svg{width:48px;height:48px;}
+  .reveal-inner img{width:150px;height:150px;}
 }
 </style>
 </head>
@@ -367,81 +367,280 @@ footer{
 
 <script>
 const MENU = [
-["Soups","soup",["Sweet Corn Soup","Hot & Sour Soup","Tomato Basil Soup","Chicken Clear Soup","Mushroom Soup","Lemon Coriander Soup"]],
-["Starters – Veg","grill",["Paneer 65","Gobi Manchurian","Veg Spring Rolls","Crispy Corn","Mushroom Chilli","Baby Corn Fritters","Paneer Tikka"]],
-["Starters – Non-Veg","grill",["Chicken 65","BBQ Chicken Wings","Fish Fingers","Prawn Koliwada","Mutton Seekh Kebab","Chilli Chicken (Dry)"]],
-["Salads","salad",["Mixed Green Salad","Kachumber Salad","Caesar Salad","Sprouts & Pomegranate","Curd Salad"]],
-["South Indian Tiffin","bread",["Idli Sambar","Medu Vada","Rava Kesari","Pongal","Uttapam","Rava Dosa"]],
-["Dosa Varieties","bread",["Ghee Roast Dosa","Masala Dosa","Onion Rava Dosa","Mysore Masala Dosa","Podi Dosa","Cheese Dosa"]],
-["Kothu Varieties","noodle",["Kothu Parotta – Egg","Kothu Parotta – Chicken","Veg Kothu Parotta","Schezwan Kothu","Cheese Kothu Parotta"]],
-["Biryani","rice",["Chicken Biryani","Mutton Biryani","Veg Biryani","Prawn Biryani","Egg Biryani","Paneer Biryani"]],
-["Tandoor & Grill","grill",["Tandoori Chicken","Malai Tikka","Seekh Kebab","Grilled Herb Chicken","Tandoori Prawns","Paneer Shashlik"]],
-["North Indian Curries","curry",["Chicken Tikka Masala","Butter Chicken","Chettinad Chicken Curry","Paneer Tikka Masala","Dal Makhani","Kadai Paneer","Palak Paneer"]],
-["Chinese – Starters","grill",["Veg Manchurian","Chicken Lollipop","Honey Chilli Potato","Crispy Chilli Fish","Golden Fried Prawns"]],
-["Chinese – Mains","noodle",["Spicy Thai Noodles","Chilli Garlic Fried Rice","Schezwan Fried Rice","Triple Truffle Trotters","Hakka Noodles","Manchow Rice"]],
-["Continental","curry",["Grilled Herb Chicken","Fish & Chips","Roast Vegetable Platter","Herb Butter Steak","Mac & Cheese"]],
-["Pizza & Pasta","pizza",["Meat Feast Pizza","Italian Pizza","Margherita Pizza","Alfredo Pasta","Arrabbiata Pasta"]],
-["Rice & Breads","bread",["Steamed Rice","Jeera Rice","Butter Naan","Garlic Naan","Laccha Paratha","Roti"]],
-["Desserts","dessert",["Butterscotch Ice Cream","Pista Ice Cream","Fruits Salad","Fruits Salad with Ice Cream","Gulab Jamun","Gajar Halwa"]],
-["Beverages & Mocktails","drink",["Sweet Lime Juice","Fresh Lemon Soda","Sweet Lassi","Mineral Water","Virgin Mojito","Blue Lagoon"]]
+  ["Soups", [
+    ["Sweet Corn Soup", "images/soup.jpg"],
+    ["Hot & Sour Soup", "images/hot-sour-soup.jpg"],
+    ["Tomato Basil Soup", "images/tomato-basil-soup.jpg"],
+    ["Chicken Clear Soup", "images/chicken-clear-soup.jpg"],
+    ["Mushroom Soup", "images/mushroom-soup.jpg"],
+    ["Lemon Coriander Soup", "images/lemon-coriander-soup.jpg"]
+  ]],
+
+  ["Starters – Veg", [
+    ["Paneer 65", "images/Paneer.jpg"],
+    ["Gobi Manchurian", "images/gobi-manchurian.jpg"],
+    ["Veg Spring Rolls", "images/veg-spring-rolls.jpg"],
+    ["Crispy Corn", "images/crispy-corn.jpg"],
+    ["Mushroom Chilli", "images/mushroom-chilli.jpg"],
+    ["Baby Corn Fritters", "images/baby-corn-fritters.jpg"],
+    ["Paneer Tikka", "images/paneer-tikka.jpg"]
+  ]],
+
+  ["Starters – Non-Veg", [
+    ["Chicken 65", "images/bbq.jpg"],
+    ["BBQ Chicken Wings", "images/bbq-chicken-wings.jpg"],
+    ["Fish Fingers", "images/fish-fingers.jpg"],
+    ["Prawn Koliwada", "images/prawn-koliwada.jpg"],
+    ["Mutton Seekh Kebab", "images/mutton-seekh-kebab.jpg"],
+    ["Chilli Chicken (Dry)", "images/chilli-chicken-dry.jpg"]
+  ]],
+
+  ["Salads", [
+    ["Mixed Green Salad", "images/salad.jpg"],
+    ["Kachumber Salad", "images/kachumber-salad.jpg"],
+    ["Caesar Salad", "images/caesar-salad.jpg"],
+    ["Sprouts & Pomegranate", "images/sprouts-pomegranate.jpg"],
+    ["Curd Salad", "images/curd-salad.jpg"]
+  ]],
+
+  ["South Indian Tiffin", [
+    ["Idli Sambar", "images/idly.jpg"],
+    ["Medu Vada", "images/medu-vada.jpg"],
+    ["Rava Kesari", "images/rava-kesari.jpg"],
+    ["Pongal", "images/pongal.jpg"],
+    ["Uttapam", "images/uttapam.jpg"],
+    ["Rava Dosa", "images/rava-dosa.jpg"]
+  ]],
+
+  ["Dosa Varieties", [
+    ["Ghee Roast Dosa", "images/dosa.jpg"],
+    ["Masala Dosa", "images/masala-dosa.jpg"],
+    ["Onion Rava Dosa", "images/onion-rava-dosa.jpg"],
+    ["Mysore Masala Dosa", "images/mysore-masala-dosa.jpg"],
+    ["Podi Dosa", "images/podi-dosa.jpg"],
+    ["Cheese Dosa", "images/cheese-dosa.jpg"]
+  ]],
+
+  ["Kothu Varieties", [
+    ["Kothu Parotta – Egg", "images/kothuparota.jpg"],
+    ["Kothu Parotta – Chicken", "images/kothu-parotta-chicken.jpg"],
+    ["Veg Kothu Parotta", "images/veg-kothu-parotta.jpg"],
+    ["Schezwan Kothu", "images/schezwan-kothu.jpg"],
+    ["Cheese Kothu Parotta", "images/cheese-kothu-parotta.jpg"]
+  ]],
+
+  ["Biryani", [
+    ["Chicken Biryani", "images/biryani.jpg"],
+    ["Mutton Biryani", "images/mutton-biryani.jpg"],
+    ["Veg Biryani", "images/veg-biryani.jpg"],
+    ["Prawn Biryani", "images/prawn-biryani.jpg"],
+    ["Egg Biryani", "images/egg-biryani.jpg"],
+    ["Paneer Biryani", "images/paneer-biryani.jpg"]
+  ]],
+
+  ["Tandoor & Grill", [
+    ["Tandoori Chicken", "images/grillchicken.jpg"],
+    ["Malai Tikka", "images/malai-tikka.jpg"],
+    ["Seekh Kebab", "images/seekh-kebab.jpg"],
+    ["Grilled Herb Chicken", "images/grilled-herb-chicken.jpg"],
+    ["Tandoori Prawns", "images/tandoori-prawns.jpg"],
+    ["Paneer Shashlik", "images/paneer-shashlik.jpg"]
+  ]],
+
+  ["North Indian Curries", [
+    ["Chicken Tikka Masala", "images/CTM.jpg"],
+    ["Butter Chicken", "images/butter-chicken.jpg"],
+    ["Chettinad Chicken Curry", "images/chettinad-chicken-curry.jpg"],
+    ["Paneer Tikka Masala", "images/paneer-tikka-masala.jpg"],
+    ["Dal Makhani", "images/dal-makhani.jpg"],
+    ["Kadai Paneer", "images/kadai-paneer.jpg"],
+    ["Palak Paneer", "images/palak-paneer.jpg"]
+  ]],
+
+  ["Chinese – Starters", [
+    ["Veg Manchurian", "images/vegmanchurian.jpg"],
+    ["Chicken Lollipop", "images/chicken-lollipop.jpg"],
+    ["Honey Chilli Potato", "images/honey-chilli-potato.jpg"],
+    ["Crispy Chilli Fish", "images/crispy-chilli-fish.jpg"],
+    ["Golden Fried Prawns", "images/golden-fried-prawns.jpg"]
+  ]],
+
+  ["Chinese – Mains", [
+    ["Spicy Thai Noodles", "images/Noodles.jpg"],
+    ["Chilli Garlic Fried Rice", "images/chilli-garlic-fried-rice.jpg"],
+    ["Schezwan Fried Rice", "images/schezwan-fried-rice.jpg"],
+    ["Triple Truffle Trotters", "images/triple-truffle-trotters.jpg"],
+    ["Hakka Noodles", "images/hakka-noodles.jpg"],
+    ["Manchow Rice", "images/manchow-rice.jpg"]
+  ]],
+
+  ["Continental", [
+    ["Grilled Herb Chicken", "images/grillchicken.jpg"],
+    ["Fish & Chips", "images/fish-chips.jpg"],
+    ["Roast Vegetable Platter", "images/roast-vegetable-platter.jpg"],
+    ["Herb Butter Steak", "images/herb-butter-steak.jpg"],
+    ["Mac & Cheese", "images/mac-cheese.jpg"]
+  ]],
+
+  ["Pizza & Pasta", [
+    ["Meat Feast Pizza", "images/pizza.jpg"],
+    ["Italian Pizza", "images/italian-pizza.jpg"],
+    ["Margherita Pizza", "images/margherita-pizza.jpg"],
+    ["Alfredo Pasta", "images/alfredo-pasta.jpg"],
+    ["Arrabbiata Pasta", "images/arrabbiata-pasta.jpg"]
+  ]],
+
+  ["Rice & Breads", [
+    ["Steamed Rice", "images/steamedrice.jpg"],
+    ["Jeera Rice", "images/jeera-rice.jpg"],
+    ["Butter Naan", "images/butter-naan.jpg"],
+    ["Garlic Naan", "images/garlic-naan.jpg"],
+    ["Laccha Paratha", "images/laccha-paratha.jpg"],
+    ["Roti", "images/roti.jpg"]
+  ]],
+
+  ["Desserts", [
+    ["Butterscotch Ice Cream", "images/butterscotch.jpg"],
+    ["Pista Ice Cream", "images/pista-ice-cream.jpg"],
+    ["Fruits Salad", "images/fruits-salad.jpg"],
+    ["Fruits Salad with Ice Cream", "images/fruits-salad-ice-cream.jpg"],
+    ["Gulab Jamun", "images/gulab-jamun.jpg"],
+    ["Gajar Halwa", "images/gajar-halwa.jpg"]
+  ]],
+
+  ["Beverages & Mocktails", [
+    ["Sweet Lime Juice", "images/limejuice.jpg"],
+    ["Fresh Lemon Soda", "images/fresh-lemon-soda.jpg"],
+    ["Sweet Lassi", "images/sweet-lassi.jpg"],
+    ["Mineral Water", "images/mineral-water.jpg"],
+    ["Virgin Mojito", "images/virgin-mojito.jpg"],
+    ["Blue Lagoon", "images/blue-lagoon.jpg"]
+  ]]
 ];
 
-const ICONS = {
-  soup:  `<circle cx="32" cy="34" r="18" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M16 34a16 16 0 0 0 32 0" fill="none" stroke="#f5f1e6" stroke-width="1.4"/><path d="M24 14c1 4-2 5-1 9M32 12c1 4-2 5-1 9M40 14c1 4-2 5-1 9" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
-  curry: `<circle cx="32" cy="36" r="17" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M18 30c4-7 24-7 28 0M18 40c4 6 24 6 28 0" stroke="#f5f1e6" stroke-width="1.2" fill="none"/>`,
-  rice:  `<ellipse cx="32" cy="40" rx="20" ry="10" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M24 34c4-14 12-14 16 0" stroke="#f5f1e6" stroke-width="1.3" fill="none"/><circle cx="26" cy="30" r="1.4" fill="#4c7a5b"/><circle cx="34" cy="26" r="1.4" fill="#4c7a5b"/><circle cx="40" cy="32" r="1.4" fill="#4c7a5b"/>`,
-  noodle:`<path d="M12 24c8 10 14-6 20 4s12-6 20 4" stroke="#d6a34d" stroke-width="1.5" fill="none"/><path d="M12 34c8 10 14-6 20 4s12-6 20 4" stroke="#f5f1e6" stroke-width="1.3" fill="none"/><path d="M12 44c8 10 14-6 20 4s12-6 20 4" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
-  grill: `<circle cx="32" cy="38" r="16" fill="none" stroke="#f5f1e6" stroke-width="1.4" opacity=".5"/><path d="M20 38a12 12 0 0 1 24 0" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M32 12v10M27 15l3 8M37 15l-3 8" stroke="#4c7a5b" stroke-width="1.3"/>`,
-  bread: `<path d="M14 40c2-18 12-24 18-24s16 6 18 24c-6 5-30 5-36 0z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M18 38h28" stroke="#f5f1e6" stroke-width="1.2"/>`,
-  dessert:`<path d="M20 44c0-14 6-24 12-24s12 10 12 24" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M14 44h36" stroke="#f5f1e6" stroke-width="1.4"/><path d="M32 20v-8M24 24l-6-6M40 24l6-6" stroke="#4c7a5b" stroke-width="1.3"/>`,
-  drink: `<path d="M22 14h20l-4 30h-12z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M23 22h18" stroke="#f5f1e6" stroke-width="1.2"/><path d="M32 44v8M26 52h12" stroke="#4c7a5b" stroke-width="1.3"/>`,
-  salad: `<path d="M14 38a18 6 0 0 0 36 0z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><path d="M20 36c2-8 6-12 8-14M32 34c1-9 3-13 5-16M40 36c2-7 5-11 6-13" stroke="#4c7a5b" stroke-width="1.3" fill="none"/>`,
-  pizza: `<path d="M32 12l20 40H12z" fill="none" stroke="#d6a34d" stroke-width="1.6"/><circle cx="30" cy="34" r="2" fill="#4c7a5b"/><circle cx="24" cy="42" r="2" fill="#4c7a5b"/><circle cx="36" cy="42" r="2" fill="#4c7a5b"/>`
-};
 
 const quicknav = document.getElementById('quicknav');
 const book = document.getElementById('book');
 
-MENU.forEach(([cat, icon, items], i)=>{
-  const num = String(i+1).padStart(2,'0');
-  const cid = 'cat'+i;
+MENU.forEach(([cat, items], i) => {
 
-  quicknav.innerHTML += `<button class="chip" data-target="${cid}"><span class="n">${num}</span>${cat}</button>`;
+  const num = String(i + 1).padStart(2, '0');
+  const cid = 'cat' + i;
 
-  const dishes = items.map((d,j)=>`
+  // Quick navigation
+  quicknav.innerHTML += `
+    <button class="chip" data-target="${cid}">
+      <span class="n">${num}</span>${cat}
+    </button>
+  `;
+
+
+  // Each dish has its own image
+  const dishes = items.map(([dishName, image], j) => `
     <div class="dish" id="${cid}-d${j}">
-      <button class="dish-name" onclick="toggleDish('${cid}-d${j}')">${d}<span class="plus">+</span></button>
-      <div class="reveal"><div><div class="reveal-inner">
-        <svg viewBox="0 0 64 64">${ICONS[icon]}</svg>
-        <p>From our ${cat.toLowerCase()} selection — ask your server about today's preparation.</p>
-      </div></div></div>
-    </div>`).join('');
 
+      <button
+        class="dish-name"
+        onclick="toggleDish('${cid}-d${j}')"
+      >
+        ${dishName}
+        <span class="plus">+</span>
+      </button>
+
+      <div class="reveal">
+        <div>
+          <div class="reveal-inner">
+
+            <img
+              src="${image}"
+              alt="${dishName}"
+              loading="lazy"
+            >
+
+          
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `).join('');
+
+
+  // Category
   book.innerHTML += `
     <section class="cat" id="${cid}">
-      <button class="cat-head" onclick="toggleCat('${cid}')">
-        <span class="idx">${num}</span><h2>${cat}</h2><span class="count">${items.length} dishes</span>
-        <svg class="chevron" viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+
+      <button
+        class="cat-head"
+        onclick="toggleCat('${cid}')"
+      >
+        <span class="idx">${num}</span>
+
+        <h2>${cat}</h2>
+
+        <span class="count">
+          ${items.length} dishes
+        </span>
+
+        <svg
+          class="chevron"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M3 6l5 5 5-5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            fill="none"
+          />
+        </svg>
+
       </button>
-      <div class="cat-body"><div><div class="dish-list">${dishes}</div></div></div>
-    </section>`;
+
+      <div class="cat-body">
+        <div>
+          <div class="dish-list">
+            ${dishes}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  `;
 });
 
-function toggleCat(id){
-  document.getElementById(id).classList.toggle('open');
-}
-function toggleDish(id){
+
+function toggleCat(id) {
   document.getElementById(id).classList.toggle('open');
 }
 
-quicknav.addEventListener('click', e=>{
+
+function toggleDish(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+
+quicknav.addEventListener('click', e => {
+
   const chip = e.target.closest('.chip');
-  if(!chip) return;
+
+  if (!chip) return;
+
   const cat = document.getElementById(chip.dataset.target);
+
   cat.classList.add('open');
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+
+  document
+    .querySelectorAll('.chip')
+    .forEach(c => c.classList.remove('active'));
+
   chip.classList.add('active');
-  cat.scrollIntoView({behavior:'smooth', block:'start'});
+
+  cat.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
 });
 </script>
 </body>
