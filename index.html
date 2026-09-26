@@ -261,7 +261,7 @@
             background: var(--gold);
             border: 2.5px solid #fff;
             border-radius: 50%;
-            margin: 0 auto 6px;
+            margin: 0 auto 5px;
             box-shadow: 0 2px 8px rgba(0,0,0,.4), 0 0 0 4px rgba(214,163,77,.25);
             position: relative;
         }
@@ -283,23 +283,24 @@
         .pin .label {
             display: inline-block;
             font-family: var(--sans);
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 600;
             line-height: 1.25;
             color: #fff;
             white-space: nowrap;
             background: rgba(15,35,24,.94);
-            padding: 5px 8px;
+            padding: 4px 7px;
             border-radius: 5px;
             border: 1px solid rgba(214,163,77,.65);
             box-shadow: 0 3px 10px rgba(0,0,0,.25);
         }
 
-        .pin.south-india { left: 67.5%; top: 65%; }
-        .pin.china       { left: 76%; top: 42%; }
-        .pin.italy       { left: 51%; top: 39%; }
-        .pin.thailand    { left: 72.5%; top: 58%; }
-        .pin.seafood     { left: 58%; top: 65%; }
+        /* Approximate positions for Wikimedia world map */
+        .pin.south-india { left: 67.5%; top: 62%; }
+        .pin.china       { left: 76%; top: 40%; }
+        .pin.italy       { left: 51%; top: 37%; }
+        .pin.thailand    { left: 72.5%; top: 55%; }
+        .pin.seafood     { left: 58%; top: 62%; }
 
         .hero-visual .cap {
             margin-top: 12px;
@@ -397,27 +398,39 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0 40px;
-            padding: 24px 0;
+            padding: 32px 0;          /* more vertical space around each category */
         }
         .branch:nth-child(even) .cat-label { order: 2; text-align: left; }
         .branch:nth-child(even) .cat-items { order: 1; text-align: right; }
-        .cat-label { align-self: start; padding-top: 2px; }
+        .cat-label {
+            align-self: start;
+            padding-top: 2px;
+            margin-bottom: 14px;      /* gap below category title */
+        }
         .cat-label .num {
             font-family: var(--serif);
             font-style: italic;
             color: var(--moss);
             font-size: 13px;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;       /* gap between "Starters" and "Small plates" */
         }
-        .cat-label h3 { font-size: 20px; }
-        .cat-items { display: flex; flex-direction: column; gap: 10px; }
+        .cat-label h3 {
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+        .cat-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;                /* space between dishes */
+            padding-top: 4px;
+        }
         .dish {
             display: flex;
             justify-content: space-between;
             gap: 10px;
             border-bottom: 1px dashed #c9c2ac;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
         .branch:nth-child(even) .dish { flex-direction: row-reverse; }
         .dish h4 {
@@ -434,7 +447,7 @@
         }
         .menu-note {
             text-align: center;
-            margin-top: 32px;
+            margin-top: 36px;
             font-size: 14px;
             color: #6b6355;
         }
@@ -449,11 +462,11 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: 110px;
-            gap: 10px;
+            gap: 14px;                /* more gap between images */
         }
         .tile {
             position: relative;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
             display: flex;
             align-items: flex-end;
@@ -574,7 +587,6 @@
         @media (max-width: 800px) {
             .wrap { padding: 0 16px; }
 
-            /* Nav */
             nav.links {
                 position: fixed;
                 top: 0;
@@ -596,7 +608,6 @@
             }
             .menu-btn { display: block; }
 
-            /* Hero */
             .hero { padding: 36px 0 40px; }
             .hero .wrap {
                 grid-template-columns: 1fr;
@@ -609,11 +620,14 @@
             }
             .cuisine-map { aspect-ratio: 4 / 3; }
             .map-title { font-size: 12px; padding: 6px 10px; }
-            .pin .label { font-size: 9px; padding: 4px 6px; }
+            .pin .label {
+                font-size: 9px;
+                padding: 3px 6px;
+                display: inline-block;   /* always show labels */
+            }
             .pin .dot { width: 11px; height: 11px; border-width: 2px; }
             .hero-visual .cap { margin-top: 10px; }
 
-            /* About */
             .about { padding: 36px 0; }
             .about .wrap {
                 grid-template-columns: 1fr;
@@ -625,7 +639,6 @@
             .about-copy .head { margin-left: auto; margin-right: auto; margin-bottom: 14px; }
             .about-copy p { margin-bottom: 10px; }
 
-            /* Special */
             .special { padding: 36px 0; }
             .special-row {
                 grid-template-columns: 40px 1fr;
@@ -637,13 +650,13 @@
                 margin-top: 2px;
             }
 
-            /* Menu */
+            /* MENU – more space around category titles */
             .menu { padding: 40px 0; }
-            .vine::before { left: 16px; }
+            .vine::before { left: 12px; }
             .branch,
             .branch:nth-child(even) {
                 grid-template-columns: 1fr;
-                padding: 18px 0 18px 36px;
+                padding: 28px 0 28px 36px;   /* more top/bottom gap */
             }
             .branch:nth-child(even) .cat-label,
             .branch:nth-child(even) .cat-items {
@@ -651,27 +664,31 @@
                 text-align: left;
             }
             .branch:nth-child(even) .dish { flex-direction: row; }
-            .cat-label { position: relative; }
+            .cat-label {
+                position: relative;
+                margin-bottom: 16px;         /* clear gap below title */
+            }
             .cat-label::before {
                 content: "";
                 position: absolute;
-                left: -28px;
+                left: -24px;
                 top: 6px;
                 width: 9px;
                 height: 9px;
                 border-radius: 50%;
                 background: var(--gold);
             }
+            .cat-label .num { margin-bottom: 6px; }
             .cat-label h3 { font-size: 18px; }
-            .cat-items { gap: 8px; }
-            .menu-note { margin-top: 24px; }
+            .cat-items { gap: 10px; padding-top: 2px; }
+            .menu-note { margin-top: 28px; }
 
-            /* Collage */
+            /* COLLAGE – more gap between images */
             .collage { padding: 32px 0; }
             .collage-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 120px;
-                gap: 8px;
+                gap: 12px;                   /* increased gap */
             }
             .tile.a, .tile.b, .tile.c, .tile.d,
             .tile.e, .tile.f, .tile.g {
@@ -680,7 +697,6 @@
             }
             .tile.a, .tile.f { grid-row: span 2; }
 
-            /* Gallery */
             .gallery { padding: 36px 0 40px; }
             .pane {
                 flex: 0 0 155px;
@@ -688,11 +704,9 @@
             }
             .pane img { height: 190px; }
 
-            /* Map */
             .map-section { padding: 36px 0; }
             .map-frame { height: 250px; }
 
-            /* Footer */
             footer { padding: 36px 0 16px; }
             .foot-grid {
                 grid-template-columns: 1fr 1fr;
@@ -719,8 +733,12 @@
             }
 
             .cuisine-map { aspect-ratio: 1 / 1; border-radius: 10px; }
-            .pin .label { display: none; }
-            .pin .dot { width: 11px; height: 11px; }
+            .pin .label {
+                font-size: 8px;
+                padding: 2px 5px;
+                display: inline-block;   /* keep labels visible */
+            }
+            .pin .dot { width: 10px; height: 10px; }
 
             .head { margin-bottom: 16px; }
             .head h2 { font-size: 22px; }
@@ -743,18 +761,21 @@
             .special-row h3 { font-size: 16px; }
             .special-row .tag { margin-top: 0; }
 
+            /* MENU – still keep good gaps on small phones */
             .branch,
             .branch:nth-child(even) {
-                padding: 14px 0 14px 32px;
+                padding: 24px 0 24px 32px;
             }
+            .cat-label { margin-bottom: 14px; }
             .cat-label h3 { font-size: 17px; }
+            .cat-items { gap: 9px; }
             .dish h4 { font-size: 14px; }
 
             .collage { padding: 24px 0; }
             .collage-grid {
                 grid-template-columns: 1fr 1fr;
                 grid-auto-rows: 100px;
-                gap: 6px;
+                gap: 10px;                   /* still visible gap */
             }
 
             .pane {
@@ -817,23 +838,23 @@
                          alt="World map showing multicuisine origins">
                     <div class="pin south-india">
                         <div class="dot"></div>
-                        <div class="label">South India · Indian</div>
+                        <div class="label">South India</div>
                     </div>
                     <div class="pin china">
                         <div class="dot"></div>
-                        <div class="label">China · Chinese</div>
+                        <div class="label">China</div>
                     </div>
                     <div class="pin italy">
                         <div class="dot"></div>
-                        <div class="label">Italy · Italian</div>
+                        <div class="label">Italy</div>
                     </div>
                     <div class="pin thailand">
                         <div class="dot"></div>
-                        <div class="label">Thailand · Thai</div>
+                        <div class="label">Thailand</div>
                     </div>
                     <div class="pin seafood">
                         <div class="dot"></div>
-                        <div class="label">Seafood · Coastal</div>
+                        <div class="label">Seafood</div>
                     </div>
                 </div>
                 <div class="cap">Multicuisine origins — the flavours we bring to your table</div>
