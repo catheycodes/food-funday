@@ -110,6 +110,54 @@
             line-height: 1;
         }
 
+        /* CALL BUTTON */
+        .call-fab {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold);
+            color: var(--forest);
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .35);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .call-fab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .4);
+        }
+
+        .call-fab svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .call-fab .call-text {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .call-fab {
+                right: 14px;
+                bottom: 14px;
+                padding: 13px;
+                border-radius: 50%;
+            }
+
+            .call-fab .call-text {
+                display: none;
+            }
+        }
+
         /* HERO */
         .hero {
             position: relative;
@@ -652,11 +700,11 @@
 
             /* MENU – more space around category titles */
             .menu { padding: 40px 0; }
-            .vine::before { left: 12px; }
+            .vine::before { left: 6px; }
             .branch,
             .branch:nth-child(even) {
                 grid-template-columns: 1fr;
-                padding: 28px 0 28px 36px;   /* more top/bottom gap */
+                padding: 28px 6px 28px 36px;   /* more top/bottom gap */
             }
             .branch:nth-child(even) .cat-label,
             .branch:nth-child(even) .cat-items {
@@ -671,7 +719,7 @@
             .cat-label::before {
                 content: "";
                 position: absolute;
-                left: -24px;
+                left: -30px;
                 top: 6px;
                 width: 9px;
                 height: 9px;
@@ -764,7 +812,7 @@
             /* MENU – still keep good gaps on small phones */
             .branch,
             .branch:nth-child(even) {
-                padding: 24px 0 24px 32px;
+                padding: 24px 6px 24px 32px;
             }
             .cat-label { margin-bottom: 14px; }
             .cat-label h3 { font-size: 17px; }
@@ -820,6 +868,15 @@
             </nav>
         </div>
     </header>
+
+    <a class="call-fab" href="tel:+918610600800" aria-label="Call Green Multicuisine Restaurant">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M6.6 10.8c1.3 2.6 3.5 4.8 6.1 6.1l2-2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.7c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2 2z"
+                fill="currentColor" />
+        </svg>
+        <span class="call-text">Call Now</span>
+    </a>
 
     <section class="hero" id="top">
         <div class="wrap">
@@ -1054,11 +1111,11 @@
             <div class="head" style="margin-left:auto;margin-right:auto;text-align:center;">
                 <div class="kicker">Find us</div>
                 <h2>Visit Green</h2>
-                <p>6 E Esplanade, St Albans VIC 3021, Australia</p>
+                <p>Kadalaiyur Rd, Puthukiramam, Kovilpatti, Tamil Nadu 628501</p>
             </div>
             <div class="map-frame">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8!2d144.800!3d-37.745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c0b0b0b0b%3A0x0!2s6%20E%20Esplanade%2C%20St%20Albans%20VIC%203021%2C%20Australia!5e0!3m2!1sen!2sau!4v1710000000000"
+                    src="https://maps.google.com/maps?q=9.1785289,77.8784456&z=16&output=embed"
                     allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     title="Green Multicuisine Restaurant location">
@@ -1090,16 +1147,15 @@
                 <div>
                     <h3>Visit us</h3>
                     <ul>
-                        <li>6 E Esplanade, St Albans VIC 3021, Australia</li>
-                        <li>+91 80005 89080</li>
-                        <li><a href="mailto:support@foodfunday.com">support@foodfunday.com</a></li>
+                        <li>Kadalaiyur Rd, Puthukiramam, Kovilpatti, Tamil Nadu 628501</li>
+                        <li><a href="tel:+918610600800">+91 86106 00800</a></li>
+                        <li><a href="mailto:support@foodfunday.com">support@green.com</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Hours</h3>
                     <ul>
-                        <li>Mon–Thu: 11am – 9pm</li>
-                        <li>Fri–Sat: 11am – 5pm</li>
+                        <li>Mon–Sun: 11:00 AM – 11:00 PM</li>
                     </ul>
                 </div>
             </div>
